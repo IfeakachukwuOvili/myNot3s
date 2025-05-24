@@ -14,6 +14,6 @@ Here is an insight to what the project looks like:
 
 ![image](https://github.com/user-attachments/assets/013cbc0f-3ea4-4c19-b060-5f85007969bb)
 
-So as not to ruin th elittle intricate surprise, clone the project to see what else I have included in the project to facilitate a better user experience.
+So as not to ruin the little intricate surprise, clone the project to see what else I have included in the project to facilitate a better user experience.
 
 
