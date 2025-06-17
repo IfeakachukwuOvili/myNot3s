@@ -53,13 +53,11 @@ const login = async (req, res) => {
       JWT_SECRET,
       { 
         expiresIn: '7d',
-        algorithm: 'HS256' // Explicitly specify algorithm
+        algorithm: 'HS256'
       }
     );
 
-    // Log successful login attempt (for security monitoring)
-    console.log(`Successful login: ${email} at ${new Date().toISOString()}`);
-
+   
     // Send response without sensitive data
     res.json({
       token,
@@ -70,7 +68,6 @@ const login = async (req, res) => {
       }
     });
   } catch (err) {
-    console.error('Login error:', err);
     res.status(500).json({ message: 'An error occurred during login' });
   }
 };
@@ -108,7 +105,6 @@ const deleteUser = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Server delete error:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Error deleting account',

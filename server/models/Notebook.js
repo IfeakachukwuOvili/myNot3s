@@ -41,7 +41,6 @@ const NotebookSchema = new mongoose.Schema(
           // Decrypt content back to utf8 text
           return decipher.update(encryptedContent, 'hex', 'utf8') + decipher.final('utf8');
         } catch (error) {
-          console.error('Decryption error:', error);
           // Return encrypted content if decryption fails
           return hashedContent;
         }
