@@ -68,7 +68,7 @@ const csrfToken = (req, res, next) => {
 
 // Basic middleware
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: 'https://mynot3s.onrender.com', 
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -78,6 +78,11 @@ app.use(securityHeaders);
 app.use(sanitizeInput);
 app.use(preventXSS);
 app.use('/uploads', express.static('uploads'));
+
+app.get('/', (req, res) => {
+  res.send('API is online and running smoothly!');
+});
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -120,7 +125,6 @@ app.get('/api/csrf-token', (req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Server error:', err.stack);
   res.status(500).json({ 
     message: 'Internal server error',
     error: process.env.NODE_ENV === 'development' ? err.message : undefined
