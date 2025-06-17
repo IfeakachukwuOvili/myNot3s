@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 export const passwordRequirements = [
   { regex: /.{8,}/, text: 'At least 8 characters' },
   { regex: /[A-Z]/, text: 'One uppercase letter' },
@@ -35,7 +35,7 @@ export const validateInput = (formData) => {
 export const handleSignup = async (formData, setIsLoading, navigate) => {
   try {
     setIsLoading(true);
-    const response = await axios.post('http://localhost:5000/api/auth/signup', {
+    const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, {
       name: formData.name,
       email: formData.email.toLowerCase(),
       password: formData.password
