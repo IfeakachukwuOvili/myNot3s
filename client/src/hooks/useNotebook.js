@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
 export const useNotebook = (id) => {
   const [title, setTitle] = useState('Untitled Notebook');
   const [notebookId, setNotebookId] = useState(null);
@@ -27,7 +28,7 @@ export const useNotebook = (id) => {
 
   const fetchNotebook = async (notebookId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/notebooks/one/${notebookId}`);
+      const res = await axios.get(`${BACKEND_URL}/api/notebooks/one/${notebookId}`);
       setNotebookId(res.data._id);
       setTitle(res.data.title);
       setContent(res.data.content);
@@ -40,7 +41,7 @@ export const useNotebook = (id) => {
   const saveNotebook = async () => {
     try {
       setIsSaving(true);
-      const res = await axios.post('http://localhost:5000/api/notebooks', {
+      const res = await axios.post(`${BACKEND_URL}/api/notebooks`, {
         _id: notebookId,
         title,
         content,

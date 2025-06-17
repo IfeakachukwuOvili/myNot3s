@@ -3,6 +3,7 @@ import axios from 'axios';
 import { validateInput } from '../utils/signupUtils';
 import { rateLimit } from '../utils/rateLimit';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
 export const useSignupForm = (navigate) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -47,7 +48,7 @@ export const useSignupForm = (navigate) => {
     
     try {
       setIsLoading(true);
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post(`${BACKEND_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email.toLowerCase(),
         password: formData.password

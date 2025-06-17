@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
 export const passwordRequirements = [
   { regex: /.{8,}/, text: 'At least 8 characters' },
   { regex: /[A-Z]/, text: 'One uppercase letter' },

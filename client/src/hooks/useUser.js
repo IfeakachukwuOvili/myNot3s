@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
 export const useUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -33,7 +34,7 @@ export const useUser = () => {
       }
 
       const response = await axios.delete(
-        `http://localhost:5000/api/auth/delete/${encodeURIComponent(user.email)}`,
+        `${BACKEND_URL}/api/auth/delete/${encodeURIComponent(user.email)}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -56,7 +57,7 @@ export const useUser = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/auth/update/${user.email}`,
+        `${BACKEND_URL}/api/auth/update/${user.email}`,
         {
           name: newName || user.name,
           currentPassword,

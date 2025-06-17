@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;  
 export const useNotebooks = () => {
   const [notebooks, setNotebooks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +24,7 @@ export const useNotebooks = () => {
 
   const fetchNotebooks = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/notebooks/${userEmail}`);
+      const res = await axios.get(`${BACKEND_URL}/api/notebooks/${userEmail}`);
       setNotebooks(res.data);
     } catch (error) {
       console.error('Failed to fetch notebooks:', error);
@@ -40,7 +41,7 @@ export const useNotebooks = () => {
     if (!notebookToDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/notebooks/${notebookToDelete}`);
+      await axios.delete(`${BACKEND_URL}/api/notebooks/${notebookToDelete}`);
       setNotebooks((prev) => prev.filter((note) => note._id !== notebookToDelete));
       setIsModalOpen(false);
       setNotebookToDelete(null);
